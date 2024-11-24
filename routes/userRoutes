@@ -1,0 +1,10 @@
+const express = require('express');
+
+const userRoutes = express.Router();
+
+userRoutes.get('/users', (req, res) => {
+    res.send('usuarios');
+})
+
+
+module.exports = userRoutes;
