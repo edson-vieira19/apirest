@@ -1,0 +1,4 @@
+const userModel = require('../models/userModel');
+
+
+exports.getAllUsers = () => userModel.getAllUsers();
