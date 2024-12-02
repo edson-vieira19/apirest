@@ -1,7 +1,7 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-const USERS_FILE = path.resolve('../arquivos/users.json');
+const USERS_FILE = path.join(__dirname, '../arquivos/users.json');
 
 exports.loadUsers = async () => {
   try {

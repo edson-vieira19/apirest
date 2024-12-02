@@ -1,3 +1,5 @@
+const { validateUser } = require('../validators/userValidator');
+
 const express = require('express');
 const userRoutes = express.Router();
 const userController = require('../controllers/userController');
@@ -5,7 +7,7 @@ const userController = require('../controllers/userController');
 
 
 userRoutes.get('/users', userController.getAllUsers);
-
+userRoutes.post('/users', validateUser, userController.saveUser);
 
 
 

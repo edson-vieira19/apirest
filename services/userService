@@ -2,3 +2,6 @@ const userModel = require('../models/userModel');
 
 
 exports.getAllUsers = () => userModel.getAllUsers();
+
+exports.saveUser = async (nome, senha, email, idade, genero) => 
+    await userModel.createUser(nome, senha, email, idade, genero);

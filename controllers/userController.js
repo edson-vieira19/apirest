@@ -7,3 +7,13 @@ exports.getAllUsers = (req, res) => {
     res.status(200).json(users);
   };
   
+
+  exports.saveUser = async (req, res) => {
+
+    const { nome, senha, email, idade, genero } = req.body;
+    
+    const newUser = await userService.saveUser( nome, senha, email, idade, genero );
+    
+
+    res.status(201).json(newUser);
+  };

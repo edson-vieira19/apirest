@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "senha": "$2b$10$FCHWfSjzGsEbMsMrDHpJnuzN55ahTL0AgKIRoP4eQeC1IO4T1ygrm",
+    "email": "edson_vs09@hotmail.com",
+    "idade": "38",
+    "genero": "masculino",
+    "lista_de_leitura": []
+  },
+  {
+    "id": 2,
+    "nome": "francisco",
+    "senha": "$2b$10$6NxVnyLezdwrhkXp.sB1ROzGB/TCLQku2PsWBihxJwm2eMXpmr6au",
+    "email": "francisco09@gmail.com",
+    "idade": "45",
+    "genero": "masculino",
+    "lista_de_leitura": []
+  }
+]
