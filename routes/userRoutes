@@ -1,4 +1,4 @@
-const { validateUser } = require('../validators/userValidator');
+const { validateUser, validateUserId } = require('../validators/userValidator');
 
 const express = require('express');
 const userRoutes = express.Router();
@@ -8,7 +8,7 @@ const userController = require('../controllers/userController');
 
 userRoutes.get('/users', userController.getAllUsers);
 userRoutes.post('/users', validateUser, userController.saveUser);
-
+userRoutes.get('/users/:id', validateUserId, userController.getUserById);
 
 
 module.exports = userRoutes;

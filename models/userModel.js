@@ -40,7 +40,7 @@ exports.createUser = async (nome, senha, email, idade, genero) => {
 exports.getAllUsers = () => users;
 
 
-
+exports.getUserById = (id) => users.find(user => user.id === id);
 
 
 

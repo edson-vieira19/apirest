@@ -7,7 +7,6 @@ exports.getAllUsers = (req, res) => {
     res.status(200).json(users);
   };
   
-
   exports.saveUser = async (req, res) => {
 
     const { nome, senha, email, idade, genero } = req.body;
@@ -17,3 +16,12 @@ exports.getAllUsers = (req, res) => {
 
     res.status(201).json(newUser);
   };
+
+  exports.getUserById = (req, res) => {
+    const user = userService.getUserById(parseInt(req.params.id, 10));
+    if (!user) {
+      return res.status(404).json({ message: "Usuario não encontrado." });
+    }
+    res.status(200).json(user);
+  };
+  
