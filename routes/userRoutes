@@ -10,5 +10,6 @@ userRoutes.get('/users', userController.getAllUsers);
 userRoutes.post('/users', validateUser, userController.saveUser);
 userRoutes.get('/users/:id', validateUserId, userController.getUserById);
 userRoutes.put('/users/:id', validateUserId, validateUpdateUser, userController.updateUser);
+userRoutes.delete('/users/:id', validateUserId, userController.deleteUser);
 
 module.exports = userRoutes;

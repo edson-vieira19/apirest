@@ -64,4 +64,17 @@ exports.updateUser = async (id, nome, senha, email, idade, genero) => {
   return updatedUser;
 };
 
+exports.deleteUser = async (id) => {
+  const userIndex = users.findIndex((user) => user.id === id);
+
+  if (userIndex === -1) {
+    return false;
+  }
+
+  users.splice(userIndex, 1);
+  await userPersistence.saveUsers(users);
+
+  return true;
+};
+
 
