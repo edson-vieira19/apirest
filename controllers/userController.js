@@ -25,3 +25,27 @@ exports.getAllUsers = (req, res) => {
     res.status(200).json(user);
   };
   
+
+  exports.updateUser = async (req, res) => {
+    const { id } = req.params;
+    const { nome, senha, email, idade, genero } = req.body;
+
+      try {
+      const updatedUser = await userService.updateUser(
+        parseInt(id, 10),
+        nome,
+        senha,
+        email,
+        idade,
+        genero
+      );
+
+      if (!updatedUser) {
+        return res.status(404).json({ message: "Usuário não encontrado." });
+      }
+      
+      res.status(200).json(updatedUser);
+     } catch (error) {
+       res.status(500).json({ message: "Erro ao atualizar o usuário.", error });
+     }
+  };

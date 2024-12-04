@@ -9,10 +9,10 @@
   },
   {
     "id": 2,
-    "nome": "francisco",
+    "nome": "franciscano",
     "senha": "$2b$10$6NxVnyLezdwrhkXp.sB1ROzGB/TCLQku2PsWBihxJwm2eMXpmr6au",
     "email": "francisco09@gmail.com",
-    "idade": "45",
+    "idade": "52",
     "genero": "masculino",
     "lista_de_leitura": []
   }

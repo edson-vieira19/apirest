@@ -39,9 +39,29 @@ exports.createUser = async (nome, senha, email, idade, genero) => {
 
 exports.getAllUsers = () => users;
 
-
 exports.getUserById = (id) => users.find(user => user.id === id);
 
+exports.updateUser = async (id, nome, senha, email, idade, genero) => {
+  const userIndex = users.findIndex((user) => user.id === id);
 
+  if (userIndex === -1) {
+    return null;
+  }
+
+  const updatedUser = {
+    ...users[userIndex],
+    nome: nome ?? users[userIndex].nome,
+    senha: senha ? await bcrypt.hash(senha, 10) : users[userIndex].senha,
+    email: email ?? users[userIndex].email,
+    idade: idade ?? users[userIndex].idade,
+    genero: genero ?? users[userIndex].genero,
+  };
+
+  users[userIndex] = updatedUser;
+
+  await userPersistence.saveUsers(users);
+
+  return updatedUser;
+};
 
 

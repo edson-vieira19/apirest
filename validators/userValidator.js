@@ -39,5 +39,32 @@ const validateUserId = [
 
 ];
 
+const validateUpdateUser = [
 
-module.exports = {validateUser, validateUserId};
+    body('nome')
+        .optional()
+        .isLength({ min: 3, max: 100 }).withMessage('O nome deve ter entre 3 e 100 caracteres.'),
+    body('senha')
+        .optional()
+        .isLength({ min: 3, max: 50 }).withMessage('a senha deve ter entre 3 e 50 caracteres'),
+    body('email')
+        .optional()
+        .isEmail().withMessage('O email deve ser válido.'),
+    body('idade')
+        .optional()
+        .isInt({ min: 0, max: 150 }).withMessage('A idade deve ser um número inteiro entre 0 e 150.'),
+    body('genero')
+        .optional()
+        .isIn(['masculino', 'feminino']).withMessage('O gênero deve ser "masculino" ou "feminino"'),
+
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+
+]
+
+module.exports = {validateUser, validateUserId, validateUpdateUser};
