@@ -41,6 +41,8 @@ exports.getAllUsers = () => users;
 
 exports.getUserById = (id) => users.find(user => user.id === id);
 
+exports.getUserByEmail = (email) => users.find((user) => user.email === email);
+
 exports.updateUser = async (id, nome, senha, email, idade, genero) => {
   const userIndex = users.findIndex((user) => user.id === id);
 

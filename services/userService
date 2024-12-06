@@ -14,6 +14,8 @@ exports.updateUser = async (id, nome, senha, email, idade, genero) =>{
 
 }
 
+exports.getUserByEmail = (email) => userModel.getUserByEmail(email);
+    
 exports.deleteUser = async (id) => {
     return await userModel.deleteUser(id);
 };
