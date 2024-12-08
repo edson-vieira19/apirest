@@ -22,6 +22,11 @@ exports.getUserById = (req, res) => {
   if (!user) {
     return res.status(404).json({ message: "Usuario não encontrado." });
   }
+
+  if (req.user.role !== 'admin' && parseInt(id, 10) !== req.user.id) {
+    return res.status(403).json({ message: "Você não pode acessar os dados deste usuário." });
+  }
+
   res.status(200).json(user);
 };
 

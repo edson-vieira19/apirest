@@ -18,5 +18,25 @@
     "genero": null,
     "role": "admin",
     "lista_de_leitura": []
+  },
+  {
+    "id": 3,
+    "nome": "Edson",
+    "senha": "$2b$10$KgNXgj64NxTJjdKnEwCQg.MUvCOOs/8b0ElafP3ZcHn1F3WKQFXem",
+    "email": "edson_vs09@hotmail.com",
+    "idade": "38",
+    "genero": "masculino",
+    "role": "user",
+    "lista_de_leitura": []
+  },
+  {
+    "id": 4,
+    "nome": "aparecido",
+    "senha": "$2b$10$eha9Vv1ciPSz1q7fbjxx6e9kkGrhACkCjN8eK3ALVfMOvy/Yd/2r6",
+    "email": "aparecido@hotmail.com",
+    "idade": "44",
+    "genero": "masculino",
+    "role": "user",
+    "lista_de_leitura": []
   }
 ]

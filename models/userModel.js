@@ -11,11 +11,6 @@ const initUsers = async () => {
 
 initUsers();
 
-//(async () => {
-  // 
-    //ultimoId = users.length > 0 ? users[users.length - 1].id : 0;
-//})();
-
 exports.createUser = async (nome, senha, email, idade, genero, role ='user') => {
 
     const hashedPassword = await bcrypt.hash(senha, 10);
