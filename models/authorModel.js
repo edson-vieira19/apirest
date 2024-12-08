@@ -1,50 +1,50 @@
-const authorPersistence = require('../persistencia/authorPersistence');
+const authorPersistence = require("../persistencia/authorPersistence");
 
 let authors = [];
 let ultimoId = 0;
 
 const initAuthors = async () => {
-    authors = await authorPersistence.loadAuthors();
-    ultimoId = authors.length > 0 ? authors[authors.length - 1].id : 0;
+  authors = await authorPersistence.loadAuthors();
+  ultimoId = authors.length > 0 ? authors[authors.length - 1].id : 0;
 };
 
 initAuthors();
 
 exports.createAuthor = async (nome, nacionalidade) => {
-
-   const newAuthor = {
-    id : ++ultimoId,
+  const newAuthor = {
+    id: ++ultimoId,
     nome,
-    nacionalidade
-   }
+    nacionalidade,
+  };
 
-   authors.push(newAuthor);
+  authors.push(newAuthor);
 
-   authorPersistence.saveAuthors(authors);
+  authorPersistence.saveAuthors(authors);
 
-   return newAuthor;
-
-}
+  return newAuthor;
+};
 
 exports.getAllAuthors = () => authors;
 
-exports.getAuthorById = (id) => authors.find(author => author.id === id);
+exports.getAuthorById = (id) => authors.find((author) => author.id === id);
 
-exports.getAuthorsByNacionalidade = (nacionalidade) => { 
-   return authors.filter(author => author.nacionalidade === nacionalidade);
-}
+exports.getAuthorsByNacionalidade = (nacionalidade) => {
+
+  return authors.filter((author) => author.nacionalidade === nacionalidade);
+};
 
 exports.updateAuthor = async (id, nome, nacionalidade) => {
+  
   const authorIndex = authors.findIndex((author) => author.id === id);
 
-  if (userIndex === -1) {
+  if (authorIndex === -1) {
     return null;
   }
 
   const updatedAuthor = {
     ...authors[authorIndex],
-    nome: nome ?? authors[authorsIndex].nome,
-    nacionalidade: nacionalidade ?? authors[authorsIndex].nacionalidade,
+    nome: nome ?? authors[authorIndex].nome,
+    nacionalidade: nacionalidade ?? authors[authorIndex].nacionalidade,
   };
 
   authors[authorIndex] = updatedAuthor;
@@ -55,7 +55,6 @@ exports.updateAuthor = async (id, nome, nacionalidade) => {
 };
 
 exports.deleteAuthor = async (id) => {
-
   const authorIndex = authors.findIndex((author) => author.id === id);
 
   if (userIndex === -1) {
