@@ -1,5 +1,5 @@
 const { validateUser, validateUserId, validateUpdateUser } = require('../validators/userValidator');
-const { authenticateUser } = require('../middlewares/userAuth');
+const { authenticateUser, verifyAdmin } = require('../middlewares/userAuth');
 
 const express = require('express');
 const userRoutes = express.Router();
@@ -10,8 +10,11 @@ userRoutes.get('/users', userController.getAllUsers);
 userRoutes.post('/users', validateUser, userController.saveUser);
 userRoutes.get('/users/:id', validateUserId, userController.getUserById);
 userRoutes.put('/users/:id', validateUserId,authenticateUser, validateUpdateUser, userController.updateUser);
-userRoutes.delete('/users/:id', validateUserId, userController.deleteUser);
+userRoutes.delete('/users/:id', validateUserId, verifyAdmin, userController.deleteUser);
 
 userRoutes.post('/login', userController.login);
+
+userRoutes.post('/install', userController.installAdmin);
+userRoutes.post('/createAdmin',verifyAdmin, userController.createAdmin);
 
 module.exports = userRoutes;

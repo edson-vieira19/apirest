@@ -10,9 +10,9 @@ app.use(express.json());
 
 app.use('/api', userRoutes);
 
-//app.get("/" ,(req, res) => {
-  //  res.send("ola mundo")
-//})
+app.get("/api" ,(req, res) => {
+    res.send("bem vindo a api de livros")
+})
 
 
 

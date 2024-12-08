@@ -11,12 +11,12 @@ const initUsers = async () => {
 
 initUsers();
 
-(async () => {
-   
-    ultimoId = users.length > 0 ? users[users.length - 1].id : 0;
-})();
+//(async () => {
+  // 
+    //ultimoId = users.length > 0 ? users[users.length - 1].id : 0;
+//})();
 
-exports.createUser = async (nome, senha, email, idade, genero) => {
+exports.createUser = async (nome, senha, email, idade, genero, role ='user') => {
 
     const hashedPassword = await bcrypt.hash(senha, 10);
 
@@ -27,6 +27,7 @@ exports.createUser = async (nome, senha, email, idade, genero) => {
         email,
         idade,
         genero,
+        role,
         lista_de_leitura:[]
         };
   
@@ -79,4 +80,7 @@ exports.deleteUser = async (id) => {
   return true;
 };
 
+exports.createAdmin = async (email, senha) => {
+  return await this.createUser('Administrador', senha, email, null, null, 'admin');
+};
 

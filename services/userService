@@ -19,3 +19,11 @@ exports.getUserByEmail = (email) => userModel.getUserByEmail(email);
 exports.deleteUser = async (id) => {
     return await userModel.deleteUser(id);
 };
+
+exports.createAdmin = async (adminEmail, adminPassword) =>{
+    return await userModel.createAdmin(adminEmail, adminPassword);
+}
+
+exports.getAdmins = () => {
+    return userModel.getAllUsers().filter(user => user.role === 'admin');
+};

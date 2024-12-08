@@ -1,11 +1,22 @@
 [
   {
     "id": 1,
-    "nome": "Edson",
-    "senha": "$2b$10$aAwqqo6ItOqp662Ks.kEUejqbMntyYZA2KWX82pt1/A2QXgb6Rkx2",
-    "email": "edson_vs09@hotmail.com",
-    "idade": "48",
-    "genero": "masculino",
+    "nome": "Administrador",
+    "senha": "$2b$10$uIS1i7MafnEt7weBJEc9veqtd0D2dQFHj5ytAtdqcloyFY9v4Pl7K",
+    "email": "admin@example.com",
+    "idade": null,
+    "genero": null,
+    "role": "admin",
+    "lista_de_leitura": []
+  },
+  {
+    "id": 2,
+    "nome": "Administrador",
+    "senha": "$2b$10$45D/Wd16sEZJq8Lmu6Npfe/ukamIM617VWoah2CJPZtvZ.pVo9muW",
+    "email": "admin2@example.com",
+    "idade": null,
+    "genero": null,
+    "role": "admin",
     "lista_de_leitura": []
   }
 ]
