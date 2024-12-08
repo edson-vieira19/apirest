@@ -14,7 +14,7 @@ const initBooks = async () => {
 
 initBooks();
 
-exports.createBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria){
+exports.createBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria) =>{
 
     if (!authors.find(author => author.id_autor === id_autor)) {
         return null; // Autor não encontrado
@@ -68,7 +68,7 @@ exports.getBookAndAuthorById = (id) =>{
 
 }
 
-exports.updateBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria){
+exports.updateBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria) =>{
 
     if (!authors.find(author => author.id_autor === id_autor)) {
         return null;
@@ -96,4 +96,19 @@ exports.updateBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria)
     
     return updatedBook;
 
+}
+
+exports.deleteBook = async (id) => {
+
+    const bookIndex = books.findIndex(book => book.id === id);
+
+    if (bookIndex === -1) {
+        return false;
+    }
+
+    authors.splice(bookIndex, 1);
+
+   await authorPersistence.saveAuthors(authors);
+
+   return true;
 }
