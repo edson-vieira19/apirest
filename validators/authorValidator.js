@@ -20,7 +20,20 @@ const validateAuthor = [
 
 ];
 
+const validateAuthorId = [
+    param('id')
+        .isInt({ min: 1 }).withMessage('O ID do autor deve ser um inteiro positivo.'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+
+];
 
 
 
-module.exports = {validateAuthor};
+
+module.exports = {validateAuthor, validateAuthorId};
