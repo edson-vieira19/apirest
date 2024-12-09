@@ -6,6 +6,7 @@ const authorController = require('../controllers/authorController')
 const { validateAuthor, validateAuthorId, validateUpdateAuthor } = require('../validators/authorValidator');
 const { verifyAdmin } = require('../middlewares/userAuth');
 
+//obs: qualquer um pode acessar os autores mas para criar, editar eu excluir necessita ser administrador
 
 authorRoutes.get('/authors', authorController.getAllAuthors);
 authorRoutes.post('/authors', validateAuthor, verifyAdmin, authorController.saveAuthor);

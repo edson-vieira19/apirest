@@ -33,7 +33,7 @@ exports.updateAuthor = async (req, res) => {
   const { id } = req.params;
   const { nome, nacionalidade } = req.body;
 
-  //try {
+   try {
     const updatedAuthor = await authorService.updateAuthor(
       parseInt(id, 10),
       nome,
@@ -45,9 +45,9 @@ exports.updateAuthor = async (req, res) => {
     }
 
     res.status(200).json(updatedAuthor);
-  //} //catch (error) {
-   // res.status(500).json({ message: "Erro ao atualizar o autor.", error });
- // }
+   } catch (error) {
+     res.status(500).json({ message: "Erro ao atualizar o autor.", error });
+   }
 };
 
 exports.deleteAuthor = async (req, res) => {

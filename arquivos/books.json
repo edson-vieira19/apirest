@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "titulo": "O Senhor dos Anéis: Sociedade do Anel",
+    "id_autor": 1,
+    "genero": "fantasia",
+    "editora": "HarperCollins",
+    "ano": "2019",
+    "faixaEtaria": "adulto"
+  }
+]

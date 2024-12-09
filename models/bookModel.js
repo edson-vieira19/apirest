@@ -16,7 +16,7 @@ initBooks();
 
 exports.createBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria) =>{
 
-    if (!authors.find(author => author.id_autor === id_autor)) {
+    if (!authors.find(author => author.id === id_autor)) {
         return null; // Autor não encontrado
     }
 
