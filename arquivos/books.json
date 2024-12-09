@@ -7,5 +7,14 @@
     "editora": "HarperCollins",
     "ano": "2019",
     "faixaEtaria": "adulto"
+  },
+  {
+    "id": 2,
+    "titulo": "Crepúsculo",
+    "id_autor": 2,
+    "genero": "romance",
+    "editora": "Intrinseca",
+    "ano": "2008",
+    "faixaEtaria": "juvenil"
   }
 ]

@@ -68,9 +68,9 @@ exports.getBookAndAuthorById = (id) =>{
 
 }
 
-exports.updateBook = async (titulo, id_autor, genero, editora, ano, faixaEtaria) =>{
+exports.updateBook = async (id, titulo, id_autor, genero, editora, ano, faixaEtaria) =>{
 
-    if (!authors.find(author => author.id_autor === id_autor)) {
+    if (id_autor && !authors.find(author => author.id === id_autor)) {
         return null;
     }
 

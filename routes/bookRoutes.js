@@ -2,7 +2,7 @@ const express = require('express');
 const bookRoutes = express.Router();
 
 const bookController = require('../controllers/bookController');
-const { validateBook, validateBookId } = require('../validators/bookValidator')
+const { validateBook, validateBookId, validateUpdateBook } = require('../validators/bookValidator')
 const {verifyAdmin} = require('../middlewares/userAuth');
 
 
@@ -11,7 +11,8 @@ const {verifyAdmin} = require('../middlewares/userAuth');
 
 bookRoutes.get('/books', bookController.getAllBooks);
 bookRoutes.post('/books', verifyAdmin,validateBook, bookController.createBook);
-
+bookRoutes.get('/books/:id', validateBookId, bookController.getBookById);
+bookRoutes.put('/books/:id',verifyAdmin ,validateBookId, validateUpdateBook , bookController.updateBook);
 
 
 

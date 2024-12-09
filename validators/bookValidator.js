@@ -59,4 +59,35 @@ const validateBookId = [
 
   ];
 
-  module.exports = {validateBookId, validateBook};
+  const validateUpdateBook = [
+
+    body('titulo')
+        .optional()
+        .isLength({ min: 3, max: 100 }).withMessage('O nome deve ter entre 3 e 100 caracteres.'),
+    body('id_autor')
+        .optional()
+        .isInt({ min: 1 }),
+    body('genero')
+        .optional()
+        .isIn(generos).withMessage(`O gênero deve ser um dos seguintes: ${generos.join(", ")}.`), 
+    body('editora')
+        .optional()
+        .isLength({ min: 3, max: 50 }).withMessage('O nome da editora deve ter entre 3 e 50 caracteres.'),
+    body('ano')
+        .optional()
+        .isInt({ min: 1000, max: new Date().getFullYear() }).withMessage(`O ano deve ser entre 1000 e ${new Date().getFullYear()}.`),
+    body('faixaEtaria')
+        .optional()
+        .isIn(faixaEtaria).withMessage(`A faixa etária deve ser uma das seguintes: ${faixaEtaria.join(", ")}.`),
+            
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+      },
+
+  ];
+
+  module.exports = {validateBookId, validateBook, validateUpdateBook};

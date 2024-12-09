@@ -3,5 +3,10 @@
     "id": 1,
     "nome": "J. R. R. Tolkien",
     "nacionalidade": "ingles"
+  },
+  {
+    "id": 2,
+    "nome": "Stephenie Meyer",
+    "nacionalidade": "americana"
   }
 ]
