@@ -22,12 +22,22 @@
   {
     "id": 3,
     "nome": "Edson",
-    "senha": "$2b$10$KgNXgj64NxTJjdKnEwCQg.MUvCOOs/8b0ElafP3ZcHn1F3WKQFXem",
+    "senha": "$2b$10$eha9Vv1ciPSz1q7fbjxx6e9kkGrhACkCjN8eK3ALVfMOvy/Yd/2r6",
     "email": "edson_vs09@hotmail.com",
     "idade": "38",
     "genero": "masculino",
     "role": "user",
-    "lista_de_leitura": []
+    "lista_de_leitura": [
+      {
+        "id": 1,
+        "titulo": "O Senhor dos Anéis: Sociedade do Anel",
+        "id_autor": 1,
+        "genero": "fantasia",
+        "editora": "HarperCollins",
+        "ano": "2019",
+        "faixaEtaria": "adulto"
+      }
+    ]
   },
   {
     "id": 4,

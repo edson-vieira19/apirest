@@ -39,7 +39,7 @@ exports.getUserById = (id) => users.find(user => user.id === id);
 
 exports.getUserByEmail = (email) => users.find((user) => user.email === email);
 
-exports.updateUser = async (id, nome, senha, email, idade, genero) => {
+exports.updateUser = async (id, nome, senha, email, idade, genero, lista_de_leitura) => {
   const userIndex = users.findIndex((user) => user.id === id);
 
   if (userIndex === -1) {
@@ -55,12 +55,17 @@ exports.updateUser = async (id, nome, senha, email, idade, genero) => {
     genero: genero ?? users[userIndex].genero,
   };
 
+  if (Array.isArray(lista_de_leitura)) {
+    updatedUser.lista_de_leitura = [...new Set(lista_de_leitura)];
+  }
+
   users[userIndex] = updatedUser;
 
   await userPersistence.saveUsers(users);
 
   return updatedUser;
 };
+
 
 exports.deleteUser = async (id) => {
   const userIndex = users.findIndex((user) => user.id === id);

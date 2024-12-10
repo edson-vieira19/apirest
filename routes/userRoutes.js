@@ -23,6 +23,11 @@ userRoutes.post('/install', userController.installAdmin);
 userRoutes.post('/createAdmin',verifyAdmin, userController.createAdmin);
 
 
+//rotas para adicionar/recuperar livros da lista de leitura
+
+userRoutes.post('/users/:id/adicionar-livros', authenticateUser, validateUserId, userController.adicionarLivroALista);
+userRoutes.get('/users/:id/minha-lista', authenticateUser, validateUserId, userController.minhaLista);
+
 
 
 

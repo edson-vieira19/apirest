@@ -83,18 +83,19 @@ exports.login = async(req, res) => {
     const user = userService.getUserByEmail(email);
 
     if (!user) {
-        return res.status(401).json({ message: "Credenciais inválidas." });
+        return res.status(401).json({ message: "Credenciais email inválidas." });
     }
     const isPasswordValid = await bcrypt.compare(senha, user.senha);
 
     if (!isPasswordValid) {
-        return res.status(401).json({ message: "Credenciais inválidas." });
+        return res.status(401).json({ message: "Credenciais senha inválidas." });
     }
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, process.env.SECRET , {
         expiresIn: '1h',
     });
 
     res.status(200).json({ message: "Login bem-sucedido.", token });
+   
   } catch (error) {
       res.status(500).json({ message: "Erro no login.", error });
  }
@@ -138,3 +139,52 @@ exports.createAdmin = async (req, res) => {
       res.status(500).json({ message: "Erro ao criar administrador.", error });
   }
 };
+
+
+exports.adicionarLivroALista = async (req, res) =>{
+
+  const { id } = req.params; //id do usuario
+  const { id_livro } = req.body;
+
+  if (parseInt(id, 10) !== req.user.id) {
+    return res.status(403).json({ message: "Você não tem permissão para alterar os dados deste usuário."});
+  }
+
+  try {
+    const updatedUser = await userService.adicionarLivroALista(
+      parseInt(id, 10),
+      id_livro
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Livro não encontrado." });
+    }
+
+    res.status(200).json(updatedUser);
+
+  } catch (error) {
+    res.status(500).json({ message: "Erro ao atualizar o usuário.", error });
+  }
+
+}
+
+exports.minhaLista = async (req, res) =>{
+    
+  const { id } = req.params; //id do usuario
+
+  if (parseInt(id, 10) !== req.user.id) {
+    return res.status(403).json({ message: "Você não tem permissão para visualizar os dados deste usuário."});
+  }
+
+ // try {
+    const lista = await userService.minhaLista(
+      parseInt(id, 10),
+    );
+
+    res.status(200).json(lista);
+
+  //} catch (error) {
+   // res.status(500).json({ message: "Erro ao visualizar lista.", error });
+ // }
+  
+}
