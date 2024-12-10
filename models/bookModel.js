@@ -99,16 +99,15 @@ exports.updateBook = async (id, titulo, id_autor, genero, editora, ano, faixaEta
 }
 
 exports.deleteBook = async (id) => {
+  const bookIndex = books.findIndex((book) => book.id === id);
 
-    const bookIndex = books.findIndex(book => book.id === id);
+  if (bookIndex === -1) {
+    return false;
+  }
 
-    if (bookIndex === -1) {
-        return false;
-    }
+  books.splice(bookIndex, 1);
 
-    authors.splice(bookIndex, 1);
+  await bookPersistence.saveBooks(books);
 
-   await authorPersistence.saveAuthors(authors);
-
-   return true;
-}
+  return true;
+};

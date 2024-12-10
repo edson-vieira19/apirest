@@ -13,7 +13,7 @@ bookRoutes.get('/books', bookController.getAllBooks);
 bookRoutes.post('/books', verifyAdmin,validateBook, bookController.createBook);
 bookRoutes.get('/books/:id', validateBookId, bookController.getBookById);
 bookRoutes.put('/books/:id',verifyAdmin ,validateBookId, validateUpdateBook , bookController.updateBook);
-
+bookRoutes.delete('/books/:id', verifyAdmin,validateBookId, bookController.deleteBook);
 
 
 module.exports = bookRoutes;

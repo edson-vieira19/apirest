@@ -14,3 +14,7 @@ exports.updateBook = async (id, titulo, id_autor, genero, editora, ano, faixaEta
     
     return await bookModel.updateBook(id, titulo, id_autor, genero, editora, ano, faixaEtaria);
 }
+
+exports.deleteBook = async (id) =>{
+    return await bookModel.deleteBook(id);
+}
