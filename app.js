@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
@@ -19,7 +21,7 @@ app.get("/api" ,(req, res) => {
 })
 
 
-
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.listen(PORT, () => {
