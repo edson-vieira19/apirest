@@ -4,12 +4,25 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 exports.getAllUsers = (req, res) => {
+/* #swagger.tags = ['Users']
+  #swagger.description = 'retorna todos os usuários (requer privilegios de administrador)'
+  #swagger.security = [{ "bearerAuth": [] }]
+*/     
+
   const users = userService.getAllUsers();
 
   res.status(200).json(users);
 };
 
 exports.saveUser = async (req, res) => {
+  /* #swagger.tags = ['Users']
+     #swagger.description = 'cria um novo usuario / faz o sign in na aplicação'
+    #swagger.parameters['user'] = {
+    in: 'body',
+    description: 'Informações do usuário',
+    required: true,
+    schema: { $ref: '#/components/schemas/User' }
+    } */
   const { nome, senha, email, idade, genero } = req.body;
 
   const newUser = await userService.saveUser(nome, senha, email, idade, genero);
@@ -18,6 +31,8 @@ exports.saveUser = async (req, res) => {
 };
 
 exports.getUserById = (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = 'retorna um usuario pelo id'
   const user = userService.getUserById(parseInt(req.params.id, 10));
   if (!user) {
     return res.status(404).json({ message: "Usuario não encontrado." });
@@ -31,6 +46,8 @@ exports.getUserById = (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = 'atualiza um usuario (requer privilegios de administrador)'
   const { id } = req.params;
   const { nome, senha, email, idade, genero } = req.body;
 
@@ -59,7 +76,8 @@ exports.updateUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-
+  // #swagger.tags = ['Users']
+  // #swagger.description = 'exclui um usuario pelo id (requer privilegios de administrador)'
   const { id } = req.params;
 
   try {
@@ -76,7 +94,8 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.login = async(req, res) => {
-
+  // #swagger.tags = ['Login']
+  // #swagger.description = 'faz login na aplicação'
   const {email,senha} = req.body;
 
     try {
@@ -103,7 +122,8 @@ exports.login = async(req, res) => {
 }
 
 exports.installAdmin = async (req, res) => {
-
+  // #swagger.tags = ['Admin']
+  // #swagger.description = 'instala um administrador inicial'
   try{
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPassword = process.env.ADMIN_PASSWORD;
@@ -124,6 +144,8 @@ exports.installAdmin = async (req, res) => {
 }
 
 exports.createAdmin = async (req, res) => {
+  // #swagger.tags = ['Admin']
+  // #swagger.description = 'permite administradores a criar um novo administrador'
   const { email, senha } = req.body;
 
   try {
@@ -142,7 +164,8 @@ exports.createAdmin = async (req, res) => {
 
 
 exports.adicionarLivroALista = async (req, res) =>{
-
+// #swagger.tags = ['Listar Livros']  
+// #swagger.description = 'um usuario pode adicionar livros a lista de leitura'
   const { id } = req.params; //id do usuario
   const { id_livro } = req.body;
 
@@ -169,22 +192,23 @@ exports.adicionarLivroALista = async (req, res) =>{
 }
 
 exports.minhaLista = async (req, res) =>{
-    
+    // #swagger.tags = ['Listar Livros'] 
+    // #swagger.description = 'retorna a lista de leitura do usuario'
   const { id } = req.params; //id do usuario
 
   if (parseInt(id, 10) !== req.user.id) {
     return res.status(403).json({ message: "Você não tem permissão para visualizar os dados deste usuário."});
   }
 
- // try {
+   try {
     const lista = await userService.minhaLista(
       parseInt(id, 10),
     );
 
     res.status(200).json(lista);
 
-  //} catch (error) {
-   // res.status(500).json({ message: "Erro ao visualizar lista.", error });
- // }
+    } catch (error) {
+     res.status(500).json({ message: "Erro ao visualizar lista.", error });
+   }
   
 }

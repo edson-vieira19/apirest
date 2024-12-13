@@ -7,13 +7,48 @@
   },
   "host": "localhost:3000",
   "basePath": "/api",
+  "tags": [
+    {
+      "name": "Login",
+      "description": "Rota relativa a autentificação, gera o Bearer Token"
+    },
+    {
+      "name": "Users",
+      "description": "Rotas relativas a usuários"
+    },
+    {
+      "name": "Authors",
+      "description": "Rotas relativas a autores"
+    },
+    {
+      "name": "Books",
+      "description": "Rotas relativas a livros"
+    },
+    {
+      "name": "Admin",
+      "description": "rotas para criar administradores"
+    },
+    {
+      "name": "Listar Livros",
+      "description": "rotas para adcionar livros a lista de leitura"
+    }
+  ],
   "schemes": [
     "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
   ],
   "paths": {
     "/users": {
       "get": {
-        "description": "Lista todos os usuários",
+        "tags": [
+          "Users"
+        ],
+        "description": "retorna todos os usuários (requer privilegios de administrador)",
         "parameters": [
           {
             "name": "authorization",
@@ -31,49 +66,42 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Cria um novo usuário",
+        "tags": [
+          "Users"
+        ],
+        "description": "cria um novo usuario / faz o sign in na aplicação",
         "parameters": [
           {
-            "name": "body",
+            "name": "user",
             "in": "body",
+            "description": "Informações do usuário",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "nome": {
-                  "example": "any"
-                },
-                "senha": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "idade": {
-                  "example": "any"
-                },
-                "genero": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/components/schemas/User"
             }
           }
         ],
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
           }
         }
       }
     },
     "/users/{id}": {
       "get": {
-        "description": "Retorna um usuario a partir do id",
+        "tags": [
+          "Users"
+        ],
+        "description": "retorna um usuario pelo id",
         "parameters": [
           {
             "name": "id",
@@ -106,7 +134,10 @@
         }
       },
       "put": {
-        "description": "atualiza um usuário",
+        "tags": [
+          "Users"
+        ],
+        "description": "atualiza um usuario (requer privilegios de administrador)",
         "parameters": [
           {
             "name": "id",
@@ -166,7 +197,10 @@
         }
       },
       "delete": {
-        "description": "exclui um usuario",
+        "tags": [
+          "Users"
+        ],
+        "description": "exclui um usuario pelo id (requer privilegios de administrador)",
         "parameters": [
           {
             "name": "id",
@@ -204,7 +238,10 @@
     },
     "/login": {
       "post": {
-        "description": "Faz login na aplicação",
+        "tags": [
+          "Login"
+        ],
+        "description": "faz login na aplicação",
         "parameters": [
           {
             "name": "body",
@@ -237,7 +274,10 @@
     },
     "/install": {
       "post": {
-        "description": "instala um administrador inicial no sistema",
+        "tags": [
+          "Admin"
+        ],
+        "description": "instala um administrador inicial",
         "responses": {
           "201": {
             "description": "Created"
@@ -253,7 +293,10 @@
     },
     "/createAdmin": {
       "post": {
-        "description": "cria administrador",
+        "tags": [
+          "Admin"
+        ],
+        "description": "permite administradores a criar um novo administrador",
         "parameters": [
           {
             "name": "authorization",
@@ -297,7 +340,10 @@
     },
     "/users/{id}/adicionar-livros": {
       "post": {
-        "description": "adiciona livros a lista de leitura",
+        "tags": [
+          "Listar Livros"
+        ],
+        "description": "um usuario pode adicionar livros a lista de leitura",
         "parameters": [
           {
             "name": "id",
@@ -347,7 +393,10 @@
     },
     "/users/{id}/minha-lista": {
       "get": {
-        "description": "retorna a lista de leitura",
+        "tags": [
+          "Listar Livros"
+        ],
+        "description": "retorna a lista de leitura do usuario",
         "parameters": [
           {
             "name": "id",
@@ -373,13 +422,19 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/authors": {
       "get": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "description": "retorna todos os autores",
         "responses": {
           "200": {
             "description": "OK"
@@ -387,7 +442,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "description": "salva um autor",
         "parameters": [
           {
             "name": "authorization",
@@ -428,7 +486,10 @@
     },
     "/authors/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "description": "retorna autor pelo id",
         "parameters": [
           {
             "name": "id",
@@ -450,7 +511,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "description": "atualiza um autor",
         "parameters": [
           {
             "name": "id",
@@ -501,7 +565,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Authors"
+        ],
+        "description": "exclui um autor",
         "parameters": [
           {
             "name": "id",
@@ -539,7 +606,10 @@
     },
     "/books": {
       "get": {
-        "description": "",
+        "tags": [
+          "Books"
+        ],
+        "description": "retorna todos os livros",
         "responses": {
           "200": {
             "description": "OK"
@@ -547,7 +617,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Books"
+        ],
+        "description": "salva um novo livro",
         "parameters": [
           {
             "name": "authorization",
@@ -603,7 +676,10 @@
     },
     "/books/{id}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Books"
+        ],
+        "description": "retorna um livro pelo id",
         "parameters": [
           {
             "name": "id",
@@ -625,7 +701,10 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Books"
+        ],
+        "description": "atualiza um livro",
         "parameters": [
           {
             "name": "id",
@@ -685,7 +764,10 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Books"
+        ],
+        "description": "exclui um livro",
         "parameters": [
           {
             "name": "id",
@@ -716,6 +798,66 @@
             "description": "Not Found"
           }
         }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string",
+            "description": "Nome completo do usuário",
+            "minLength": 3,
+            "maxLength": 100,
+            "example": "João Silva"
+          },
+          "senha": {
+            "type": "string",
+            "description": "Senha do usuário",
+            "minLength": 3,
+            "maxLength": 50,
+            "example": "123456"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email do usuário",
+            "format": "email",
+            "example": "joao.silva@example.com"
+          },
+          "idade": {
+            "type": "integer",
+            "description": "Idade do usuário",
+            "minimum": 0,
+            "maximum": 150,
+            "example": 25
+          },
+          "genero": {
+            "type": "string",
+            "description": "Gênero do usuário",
+            "enum": [
+              "masculino",
+              "feminino"
+            ],
+            "example": "masculino"
+          }
+        },
+        "required": [
+          "nome",
+          "senha",
+          "email",
+          "idade",
+          "genero"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Autenticação por token Bearer"
       }
     }
   }

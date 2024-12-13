@@ -1,7 +1,8 @@
 const authorService = require('../services/authorService')
 
 exports.getAllAuthors = (req, res) => {
-
+    // #swagger.tags = ['Authors']
+    // #swagger.description = 'retorna todos os autores'
     const authors = authorService.getAllAuthors();
   
     res.status(200).json(authors);
@@ -9,7 +10,8 @@ exports.getAllAuthors = (req, res) => {
 
 
 exports.saveAuthor = async (req, res) => {
-
+    // #swagger.tags = ['Authors']
+    // #swagger.description = 'salva um autor'
     const {nome, nacionalidade} = req.body;
 
     const newAuthor = await authorService.saveAuthor(nome, nacionalidade);
@@ -18,7 +20,8 @@ exports.saveAuthor = async (req, res) => {
 } 
 
 exports.getAuthorById = (req, res) => {
-
+    // #swagger.tags = ['Authors']
+    // #swagger.description = 'retorna autor pelo id'
     const author = authorService.getAuthorById(parseInt(req.params.id, 10));
 
     if (!author) {
@@ -30,6 +33,8 @@ exports.getAuthorById = (req, res) => {
 }
 
 exports.updateAuthor = async (req, res) => {
+    // #swagger.tags = ['Authors']
+    // #swagger.description = 'atualiza um autor'
   const { id } = req.params;
   const { nome, nacionalidade } = req.body;
 
@@ -51,6 +56,8 @@ exports.updateAuthor = async (req, res) => {
 };
 
 exports.deleteAuthor = async (req, res) => {
+    // #swagger.tags = ['Authors']
+    // #swagger.description = 'exclui um autor'
 
   const { id } = req.params;
 

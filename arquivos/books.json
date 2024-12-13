@@ -16,5 +16,14 @@
     "editora": "Intrinseca",
     "ano": "2008",
     "faixaEtaria": "juvenil"
+  },
+  {
+    "id": 3,
+    "titulo": "O Hobbit",
+    "id_autor": 1,
+    "genero": "fantasia",
+    "editora": "HarperCollins",
+    "ano": "2019",
+    "faixaEtaria": "adulto"
   }
 ]

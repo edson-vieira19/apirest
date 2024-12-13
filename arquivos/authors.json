@@ -8,5 +8,10 @@
     "id": 2,
     "nome": "Stephenie Meyer",
     "nacionalidade": "americana"
+  },
+  {
+    "id": 3,
+    "nome": "George R. R. Martin",
+    "nacionalidade": "Norte Americano"
   }
 ]

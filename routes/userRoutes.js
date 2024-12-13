@@ -9,7 +9,7 @@ const userController = require('../controllers/userController');
 // o usuario so pode ver/editar os dados dele mesmo
 
 userRoutes.get('/users',verifyAdmin ,userController.getAllUsers);
-userRoutes.post('/users', validateUser, userController.saveUser);
+userRoutes.post('/users', userController.saveUser);
 userRoutes.get('/users/:id', validateUserId,authenticateUser ,userController.getUserById);
 userRoutes.put('/users/:id', validateUserId,authenticateUser, validateUpdateUser, userController.updateUser);
 userRoutes.delete('/users/:id', validateUserId, verifyAdmin, userController.deleteUser);
